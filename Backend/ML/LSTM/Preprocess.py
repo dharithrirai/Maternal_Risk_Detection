@@ -22,12 +22,9 @@ print("Outliers",len(df)-len(new_df))
 
 new_df['RiskLevel'].replace({"high risk":"1","mid risk":"0","low risk":"0"}, inplace=True)
 new_df['RiskLevel'] = new_df['RiskLevel'].astype(float)
+new_df.BodyTemp=(new_df.BodyTemp-32)*5/9
+new_df.BS=(new_df.BS*18)
 print(new_df)
-
 new_df.to_csv('Backend/ML/New_Maternal.csv', index=False)
 
 
-#Train the data
-train , test = train_test_split(new_df,test_size=0.15,random_state=35)
-print(f"No. of training examples:{train.shape[0]}")
-print(f"No. of testing examples:{test.shape[0]}")
